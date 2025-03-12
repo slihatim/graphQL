@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.zip.GZIPOutputStream;
-@Configuration
+//@Configuration
 public class CustomCompressionFilter implements Filter {
 
     @Override

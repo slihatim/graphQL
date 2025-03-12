@@ -1,0 +1,28 @@
+type Comment {
+    commentId: ID!
+    commentMessage: String!
+    commentOwnerId: String!
+    commentPostId: String!
+    commentPublishDate: String
+}
+
+input CommentInput {
+    commentId: ID
+    commentMessage: String!
+    commentOwnerId: String!
+    commentPostId: String!
+    commentPublishDate: String
+}
+
+type Query {
+    getAllComments(page: Int=0, limit: Int=20) : [Comment!]!
+    getSingleComment(id: ID!) : Comment
+    getCommentsByPost(postId: ID!, page: Int=0, limit: Int=20) : [Comment!]!
+    getCommentsByUser(userId: ID!, page: Int=0, limit: Int=20) : [Comment!]!
+}
+
+type Mutation {
+    createComment(comment: CommentInput!) : Comment
+    updateComment(id: ID!, comment: CommentInput!) : Comment
+    deleteComment(id: ID!) : ID
+}
