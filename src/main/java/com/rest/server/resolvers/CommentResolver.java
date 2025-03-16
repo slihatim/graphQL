@@ -45,13 +45,20 @@ public class CommentResolver {
     }
 
     @MutationMapping
-    public Comment createComment(@Argument CommentInput comment){
-        return commentService.createComment(mapInputToComment(comment));
+    public Comment createComment(@Argument String commentMessage,@Argument String commentOwnerId,@Argument String commentPostId,@Argument String commentPublishDate){
+        Comment comment = new Comment();
+        comment.setCommentMessage(commentMessage);
+        comment.setCommentOwnerId(commentOwnerId);
+        comment.setCommentPostId(commentPostId);
+        comment.setCommentPublishDate(commentPublishDate);
+        return commentService.createComment(comment);
     }
 
     @MutationMapping
-    public Comment updateComment(@Argument String id, @Argument CommentInput comment){
-        return commentService.updateComment(id, mapInputToComment(comment));
+    public Comment updateComment(@Argument String id, @Argument String commentMessage){
+        Comment comment = new Comment();
+        comment.setCommentMessage(commentMessage);
+        return commentService.updateComment(id, comment);
     }
 
     @MutationMapping
@@ -60,20 +67,4 @@ public class CommentResolver {
         return id;
     }
 
-    private Comment mapInputToComment(CommentInput input) {
-        Comment comment = new Comment();
-        comment.setCommentId(input.commentId);
-        comment.setCommentMessage(input.commentMessage);
-        comment.setCommentOwnerId(input.commentOwnerId);
-        comment.setCommentPostId(input.commentPostId);
-        comment.setCommentPublishDate(input.commentPublishDate);
-        return comment;
-    }
-
-    public static class CommentInput {
-        public String commentId;
-        public String commentMessage;
-        public String commentOwnerId;
-        public String commentPostId;
-        public String commentPublishDate;    }
 }
