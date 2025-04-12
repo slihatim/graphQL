@@ -31,6 +31,21 @@ type Tag {
     tagName: String
 }
 
+type User {
+    userId: ID
+    userTitle: String
+    userFirstName: String
+    userLastName: String
+    userGender: String
+    userEmail: String
+    userPassword: String
+    userDateOfBirth: String
+    userRegisterDate: String
+    userPhone: String
+    userPicture: String
+    userLocationId: String
+}
+
 type Query {
     # comment
     getAllComments(page: Int=0, limit: Int=20) : [Comment]
@@ -53,6 +68,10 @@ type Query {
     allTags(page: Int=0, limit: Int=20): [Tag]
     singleTag(id: ID): Tag
 
+    # user
+    allUsers(page: Int=0, limit: Int=20): [User]
+    singleUser(id: ID): User
+    searchUsers(query: String, page: Int=0, limit: Int=20): [User]
 }
 
 type Mutation {
@@ -75,4 +94,9 @@ type Mutation {
     createTag(tagName: String): Tag
     updateTag(id: ID!, tagName: String): Tag
     deleteTag(id:ID!): ID
+
+    # user
+    createUser(userTitle: String, userFirstName: String!, userLastName: String!, userGender: String, userEmail: String!, userPassword: String!, userDateOfBirth: String, userRegisterDate: String, userPhone: String, userPicture: String, userLocationId: String): User
+    updateUser(id: ID!, userTitle: String, userFirstName: String, userLastName: String, userPassword: String, userDateOfBirth: String, userPhone: String, userPicture: String, userLocationId: String): User
+    deleteUser(id: ID!): ID
 }
