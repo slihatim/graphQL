@@ -15,6 +15,17 @@ type Location {
     locationTimezone : String
 }
 
+type Post {
+    postId: ID
+    postText: String
+    postImage: String
+    postLikes: Int
+    postLink: String
+    postTags: [String]
+    postPublishDate: String
+    postOwnerId: String
+}
+
 type Query {
     # comment
     getAllComments(page: Int=0, limit: Int=20) : [Comment]
@@ -25,6 +36,13 @@ type Query {
     # location
     singleLocation(locationId: ID) : Location
     allLocations(page: Int=0, limit: Int=20): [Location]
+
+    # post
+    allPosts(page: Int=0, limit: Int=20): [Post]
+    findPostsByUserId(userId: String, page: Int=0, limit: Int=20): [Post]
+    findPostsByTag(tagName: String, page: Int=0, limit: Int=20): [Post]
+    singlePost(id: ID): Post
+    searchPosts(query: String, page: Int=0, limit: Int=20): [Post]
 }
 
 type Mutation {
@@ -37,4 +55,10 @@ type Mutation {
     createLocation(locationStreet: String, locationCity: String, locationState: String, locationCountry: String, locationTimezone: String): Location
     updateLocation(locationId: ID!, locationStreet: String, locationCity: String, locationState: String, locationCountry: String, locationTimezone: String): Location
     deleteLocation(locationId: ID!): ID
+
+    # post
+    createPost(postText: String!, postImage: String, postLikes: Int, postLink: String, postTags: [String], postPublishDate: String, postOwnerId: String!): Post
+    updatePost(id: ID!, postText: String, postImage: String, postLikes: Int, postLink: String, postTags: [String]): Post
+    deletePost(id: ID!): ID
+
 }
