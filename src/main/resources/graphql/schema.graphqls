@@ -6,15 +6,35 @@ type Comment {
     commentPublishDate: String
 }
 
+type Location {
+    locationId : ID
+    locationStreet : String
+    locationCity : String
+    locationState : String
+    locationCountry : String
+    locationTimezone : String
+}
+
 type Query {
+    # comment
     getAllComments(page: Int=0, limit: Int=20) : [Comment]
     getSingleComment(id: ID) : Comment
     getCommentsByPost(postId: ID, page: Int=0, limit: Int=20) : [Comment]
     getCommentsByUser(userId: ID, page: Int=0, limit: Int=20) : [Comment]
+
+    # location
+    singleLocation(locationId: ID) : Location
+    allLocations(page: Int=0, limit: Int=20): [Location]
 }
 
 type Mutation {
+    # comment
     createComment(commentMessage: String!, commentOwnerId: String!, commentPostId: String!, commentPublishDate: String) : Comment
     updateComment(id: ID!, commentMessage: String!) : Comment
     deleteComment(id: ID!) : ID
+
+    # location
+    createLocation(locationStreet: String, locationCity: String, locationState: String, locationCountry: String, locationTimezone: String): Location
+    updateLocation(locationId: ID!, locationStreet: String, locationCity: String, locationState: String, locationCountry: String, locationTimezone: String): Location
+    deleteLocation(locationId: ID!): ID
 }

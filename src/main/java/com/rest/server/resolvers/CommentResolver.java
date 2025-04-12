@@ -2,9 +2,6 @@ package com.rest.server.resolvers;
 
 import com.rest.server.models.Comment;
 import com.rest.server.services.CommentService;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
